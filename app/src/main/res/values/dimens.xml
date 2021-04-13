@@ -3,4 +3,6 @@
     <dimen name="normal_size">25sp</dimen>
     <dimen name="small_size">15sp</dimen>
     <dimen name="default_spacing">25dp</dimen>
+    <dimen name="constraint_spacing">0dp</dimen>
+
 </resources>

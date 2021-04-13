@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Dotify</string>
+    <string name="song_title">Strangers</string>
+    <string name="change_user">Change User</string>
+    <string name="artist_name">Seven Lions with Myon and Shane 54 - Strangers (Feat. Tove Lo)</string>
+    <string name="album_cover">Album Cover</string>
+    <string name="btn_prev">Previous Button</string>
+    <string name="btn_play">Play Button</string>
+    <string name="btn_next">Next Button</string>
+    <string name="default_name">Baby Yoda</string>
+    <string name="user_name_hint">username</string>
+    <string name="apply">apply</string>
+    <plurals name="num_plays">
+        <item quantity="one">%1$d play</item>
+        <item quantity="other">%1$d plays</item>
+    </plurals>
+    <string name="empty_error_msg">%1$s cannot be empty.</string>
+</resources>

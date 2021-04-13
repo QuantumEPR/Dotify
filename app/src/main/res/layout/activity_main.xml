@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="@dimen/default_spacing"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tvUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/default_name"
+        android:textSize="@dimen/small_size"
+        app:layout_constraintBottom_toTopOf="@id/barrierBottom"
+        app:layout_constraintEnd_toStartOf="@id/btnChangeUser"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etUser"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/user_name_hint"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:text="@string/default_name"
+        android:textSize="@dimen/small_size"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/barrierBottom"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tvUser"
+
+        />
+
+    <Button
+        android:id="@+id/btnChangeUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/change_user"
+        app:layout_constraintBottom_toTopOf="@id/barrierBottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvUser"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrierBottom"
+        android:layout_width="@dimen/constraint_spacing"
+        android:layout_height="@dimen/constraint_spacing"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="tvUser, btnChangeUser" />
+
+    <ImageButton
+        android:id="@+id/btnAlbum"
+        android:layout_width="@dimen/constraint_spacing"
+        android:layout_height="@dimen/constraint_spacing"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/album_cover"
+        android:foreground="?selectableItemBackgroundBorderless"
+        android:layout_marginVertical="@dimen/default_spacing"
+        app:layout_constraintBottom_toTopOf="@id/tvTitle"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barrierBottom"
+        app:srcCompat="@drawable/strangers_cover_art" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/song_title"
+        android:textSize="@dimen/normal_size"
+        app:layout_constraintBottom_toTopOf="@id/tvArtist"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnAlbum" />
+
+    <TextView
+        android:id="@+id/tvArtist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="@string/artist_name"
+        android:textSize="@dimen/small_size"
+        app:layout_constraintBottom_toTopOf="@id/tvNumPlays"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+    <TextView
+        android:id="@+id/tvNumPlays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_spacing"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvArtist" />
+
+    <ImageButton
+        android:id="@+id/btnPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/constraint_spacing"
+        android:background="@android:color/transparent"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnNext"
+        app:layout_constraintStart_toEndOf="@id/btnPrev"
+        app:layout_constraintTop_toBottomOf="@id/tvNumPlays"
+        android:contentDescription="@string/btn_play"
+        app:srcCompat="@drawable/ic_play" />
+
+    <ImageButton
+        android:id="@+id/btnPrev"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/constraint_spacing"
+        android:background="@android:color/transparent"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/btn_prev"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@id/btnPlay"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvNumPlays"
+        app:srcCompat="@drawable/ic_previous" />
+
+    <ImageButton
+        android:id="@+id/btnNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/btn_next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnPlay"
+        app:layout_constraintTop_toBottomOf="@+id/tvNumPlays"
+        app:srcCompat="@drawable/ic_next" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
