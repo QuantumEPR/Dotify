@@ -14,7 +14,6 @@
         android:text="@string/default_name"
         android:textSize="@dimen/small_size"
         app:layout_constraintBottom_toTopOf="@id/barrierBottom"
-        app:layout_constraintEnd_toStartOf="@id/btnChangeUser"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -42,7 +41,6 @@
         android:text="@string/change_user"
         app:layout_constraintBottom_toTopOf="@id/barrierBottom"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tvUser"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Barrier

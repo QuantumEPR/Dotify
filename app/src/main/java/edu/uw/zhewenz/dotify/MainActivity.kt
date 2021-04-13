@@ -7,18 +7,20 @@ import android.text.TextUtils
 import android.view.View
 import android.widget.Toast
 import androidx.core.view.isInvisible
-//import edu.uw.zhewenz.dotify.databinding.ActivityMainBinding
- import edu.uw.zhewenz.dotify.databinding.ActivityMainLinearBinding
+import edu.uw.zhewenz.dotify.databinding.ActivityMainBinding
 import kotlin.random.Random
+
+// For Extra Credit
+// import edu.uw.zhewenz.dotify.databinding.ActivityMainLinearBinding
 
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainLinearBinding
+    private lateinit var binding: ActivityMainBinding
     private var numPlayed: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityMainLinearBinding.inflate(layoutInflater).apply {
+        binding = ActivityMainBinding.inflate(layoutInflater).apply {
             setContentView(root)
         }
 
