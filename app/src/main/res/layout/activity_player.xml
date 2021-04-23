@@ -5,76 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingHorizontal="@dimen/default_spacing"
-    tools:context=".MainActivity">
-
-    <TextView
-        android:id="@+id/tvUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/default_name"
-        android:textSize="@dimen/small_size"
-        app:layout_constraintBottom_toTopOf="@id/barrierBottom"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/etUser"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/user_name_hint"
-        android:importantForAutofill="no"
-        android:inputType="text"
-        android:text="@string/default_name"
-        android:textSize="@dimen/small_size"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@id/barrierBottom"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="@id/tvUser"
-
-        />
-
-    <Button
-        android:id="@+id/btnChangeUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/change_user"
-        app:layout_constraintBottom_toTopOf="@id/barrierBottom"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrierBottom"
-        android:layout_width="@dimen/constraint_spacing"
-        android:layout_height="@dimen/constraint_spacing"
-        app:barrierDirection="bottom"
-        app:constraint_referenced_ids="tvUser, btnChangeUser" />
+    tools:context=".PlayerActivity">
 
     <ImageButton
         android:id="@+id/btnAlbum"
         android:layout_width="@dimen/constraint_spacing"
         android:layout_height="@dimen/constraint_spacing"
+        android:layout_marginVertical="@dimen/default_spacing"
         android:background="@android:color/transparent"
         android:contentDescription="@string/album_cover"
+        android:scaleType="centerCrop"
         android:foreground="?selectableItemBackgroundBorderless"
-        android:layout_marginVertical="@dimen/default_spacing"
         app:layout_constraintBottom_toTopOf="@id/tvTitle"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/barrierBottom"
         app:srcCompat="@drawable/strangers_cover_art" />
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/song_title"
         android:textSize="@dimen/normal_size"
         app:layout_constraintBottom_toTopOf="@id/tvArtist"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnAlbum" />
+        app:layout_constraintTop_toBottomOf="@id/btnAlbum"
+        tools:text="Title"/>
 
     <TextView
         android:id="@+id/tvArtist"
@@ -82,12 +40,12 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:maxLines="1"
-        android:text="@string/artist_name"
         android:textSize="@dimen/small_size"
         app:layout_constraintBottom_toTopOf="@id/tvNumPlays"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        tools:text="@string/artist_name"/>
 
     <TextView
         android:id="@+id/tvNumPlays"
@@ -101,7 +59,7 @@
     <ImageButton
         android:id="@+id/btnPlay"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/constraint_spacing"
+        android:layout_height="0dp"
         android:background="@android:color/transparent"
         android:foreground="?android:attr/selectableItemBackgroundBorderless"
         app:layout_constraintDimensionRatio="1:1"

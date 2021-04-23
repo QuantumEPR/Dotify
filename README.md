@@ -1,22 +1,22 @@
 # Dotify [Zhewen Zheng]
 
-This is a music player app (only layouts).
+This is a music player app with songs in a list. You can shuffle the list by clicking "Shuffle".
+Details about a song can be accessed following the instructions below.
 
 ## Extra credit (Attempted)
 
-1. A user is not allowed to apply a new username if the edit text field is empty. (+ 0.25)
-2. Long pressing on the cover image changes the text color of the play count to a different color. (+ 0.25)
-3. If using ConstraintLayout, utilize a Barrier or Guideline somewhere with a view constrained to it (+0.25)
-4. All hardcoded dimensions & colors are extracted into res/values/dimens.xml & res/values/colors.xml
-   respectively (+ .5)
-5. Create another xml file that uses a different ViewGroup type than your original. (+ 1)
-   a. i.e. If you used a ConstraintLayout for your homework, this second xml uses LinearLayouts, and
-   vice versa (I recommend at least one of your xml files should use ConstraintLayout)
+1. Show a stock Android back arrow button, ←, in the Header/Toolbar of Activity B. When clicked, it
+should navigate back to SongListActivity (+.25)
+2. (+.25) Long pressing on an item should delete that song on the list.
+a. It should show a Toast that says what song was deleted.
+3. When a user presses shuffle, the list should animate the changes using DiffUtil (+1)
 
 ## Screenshots
 
-<img src="./screenshot.png" alt="Screenshot of App running in Emulator" height="500" >
+<img src="./screenshot0.png" alt="Screenshot of App running in Emulator: Step 1" height="500" >
+<img src="./screenshot1.png" alt="Screenshot of App running in Emulator: Step 2" height="500" >
+<img src="./screenshot2.png" alt="Screenshot of App running in Emulator: Step 3" height="500" >
 
 ## Installation & Usage
 
-Import the Project in Android Studio and Run the App.
+Import the Project in Android Studio and Run the App. See screenshots for image instructions.

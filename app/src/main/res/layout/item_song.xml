@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+ >
+
+    <ImageView
+        android:id="@+id/ivAlbumCover"
+        android:layout_width="@dimen/album_cover_size"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/small_margin"
+        android:src="@drawable/unknown_small"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@id/tvSongName"
+        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@string/album_cover_small"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvSongName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/song_title"
+        android:layout_marginStart="@dimen/small_margin"
+        app:layout_constraintStart_toEndOf="@id/ivAlbumCover"
+        app:layout_constraintTop_toTopOf="@id/ivAlbumCover" />
+    <TextView
+        android:id="@+id/tvArtistName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/artist_name"
+        android:layout_marginStart="@dimen/small_margin"
+        app:layout_constraintStart_toEndOf="@id/ivAlbumCover"
+        app:layout_constraintTop_toBottomOf="@id/tvSongName"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
