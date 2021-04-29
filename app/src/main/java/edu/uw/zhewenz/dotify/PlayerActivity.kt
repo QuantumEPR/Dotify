@@ -73,6 +73,10 @@ class PlayerActivity : AppCompatActivity() {
                 tvNumPlays.setTextColor(color)
                 true
             }
+
+            btnSettings.setOnClickListener {
+                song?.let{ launchSettingsActivity(this@PlayerActivity, it) }
+            }
         }
     }
 
