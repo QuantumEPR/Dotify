@@ -20,6 +20,7 @@ class StatisticsFragment : Fragment() {
         val stats = safeArgs.stats
         with(binding) {
             ivAlbumCover.setImageResource(song.largeImageID)
+            songDescription.text = resources.getString(R.string.song_description, song.title, song.artist)
             tvNumPlays.text = resources.getQuantityString(R.plurals.num_plays, stats, stats)
         }
         return binding.root
