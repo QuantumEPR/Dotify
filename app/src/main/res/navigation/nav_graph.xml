@@ -13,20 +13,47 @@
         <argument
             android:name="song"
             app:argType="com.ericchee.songdataprovider.Song" />
+        <argument
+            android:name="stats"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="edu.uw.zhewenz.dotify.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <argument
+            android:name="profile"
+            app:argType="edu.uw.zhewenz.dotify.Character" />
+    </fragment>
     <fragment
         android:id="@+id/aboutFragment"
         android:name="edu.uw.zhewenz.dotify.AboutFragment"
         android:label="fragment_about"
-        tools:layout="@layout/fragment_about" />
+        tools:layout="@layout/fragment_about" >
+        <argument
+            android:name="appInfo"
+            app:argType="edu.uw.zhewenz.dotify.AppInfo" />
+    </fragment>
     <fragment
         android:id="@+id/statisticsFragment"
         android:name="edu.uw.zhewenz.dotify.StatisticsFragment"
         android:label="fragment_statistics"
-        tools:layout="@layout/fragment_statistics" />
+        tools:layout="@layout/fragment_statistics" >
+        <argument
+            android:name="stats"
+            app:argType="integer" />
+        <argument
+            android:name="song"
+            app:argType="com.ericchee.songdataprovider.Song" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_statisticsFragment"
+        app:destination="@id/statisticsFragment" />
+    <action
+        android:id="@+id/action_global_profileFragment"
+        app:destination="@id/profileFragment" />
+    <action
+        android:id="@+id/action_global_aboutFragment"
+        app:destination="@id/aboutFragment" />
 </navigation>

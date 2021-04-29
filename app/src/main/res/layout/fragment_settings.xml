@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/default_spacing"
     tools:context=".SettingsFragment">
 
 
@@ -11,7 +12,7 @@
         android:id="@+id/btnProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="profile"
+        android:text="@string/profile"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
  />
@@ -20,7 +21,7 @@
         android:id="@+id/btnStats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="profile statistics"
+        android:text="@string/profile_statistics"
         app:layout_constraintTop_toBottomOf="@id/btnProfile"
         app:layout_constraintStart_toStartOf="parent"
  />
@@ -29,7 +30,7 @@
         android:id="@+id/btnAbout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="about"
+        android:text="@string/about"
         app:layout_constraintTop_toBottomOf="@id/btnStats"
         app:layout_constraintStart_toStartOf="parent"
 />

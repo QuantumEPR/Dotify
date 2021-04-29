@@ -22,11 +22,17 @@ class SongListActivity : AppCompatActivity() {
             val listOfSongs = SongDataProvider.getAllSongs()
             val adapter = SongListAdapter(listOfSongs)
 
-            //miniPlayer.text = resources.getString(R.string.song_description, )
             rvSongs.adapter = adapter
+            if(savedInstanceState != null) {
+                val song = savedInstanceState.getParcelable<Song?>(STATE_CURRENT_SONG)
+                if (song != null) {
+                    currentSong = song
+                    miniPlayerGroup.visibility = View.VISIBLE
+                    songDescription.text = resources.getString(R.string.song_description, song.title, song.artist)
+                }
+            }
 
             adapter.onSongClickListener = { song ->
-                Log.i("This", song.toString())
                 currentSong = song
                 miniPlayerGroup.visibility = View.VISIBLE
                 songDescription.text = resources.getString(R.string.song_description, song.title, song.artist)
@@ -48,9 +54,14 @@ class SongListActivity : AppCompatActivity() {
                 Log.i("This", currentSong.toString())
                 navigateToPlayerActivity(this@SongListActivity, currentSong)
             }
-
         }
+    }
 
-
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putParcelable(STATE_CURRENT_SONG, currentSong)
+        super.onSaveInstanceState(outState)
+    }
+    companion object {
+        const val STATE_CURRENT_SONG = "currentSong"
     }
 }

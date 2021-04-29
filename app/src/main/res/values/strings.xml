@@ -16,7 +16,22 @@
     <string name="btn_shuffle">Shuffle</string>
     <string name="empty_error_msg">%1$s cannot be empty.</string>
     <string name="song_description">%1$s - %2$s</string>
-    <string name="settings">settings</string>
+
+    <string name="age">Age: %1$d</string>
+    <string name="email">Email: %1$s</string>
+    <string name="joined_date">Joined: %1$s</string>
+    <string name="height">Height: %1$s</string>
+
+    <string name="creator">Creator: %1$s</string>
+    <string name="version">Version: %1$s</string>
+    <string name="website">Website: %1$s</string>
+
+    <string name="kvPair">%1$s: %2$s</string>
+    <string name="settings">Settings</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="profile_picture">profile picture</string>
+    <string name="profile">profile</string>
+    <string name="profile_statistics">profile statistics</string>
+    <string name="about">about</string>
 </resources>

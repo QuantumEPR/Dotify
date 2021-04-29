@@ -5,16 +5,21 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Parcelable
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import com.ericchee.songdataprovider.Song
 import edu.uw.zhewenz.dotify.databinding.ActivityPlayerBinding
+import kotlinx.parcelize.Parcelize
 import kotlin.random.Random
 
 // For Extra Credit
 // import edu.uw.zhewenz.dotify.databinding.ActivityMainLinearBinding
 
 private const val SONG_KEY = "song"
+
 fun navigateToPlayerActivity(context: Context, song: Song?) = with(context) {
     var intent = Intent(this, PlayerActivity::class.java).apply {
         val bundle = Bundle().apply {
@@ -32,6 +37,7 @@ fun navigateToPlayerActivity(context: Context, song: Song?) = with(context) {
 class PlayerActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPlayerBinding
     private var numPlayed: Int = 0
+    private var song: Song? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -42,14 +48,21 @@ class PlayerActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         with(binding) {
+            if (savedInstanceState != null) {
+                with(savedInstanceState) {
+                    numPlayed = getInt(STATE_NUM_PLAYED)
+                }
+            } else {
+                Log.i("InstanceState", "unavailable")
+                numPlayed = Random.nextInt(0, 1000000)
+            }
             val res = resources
-            val song: Song? = intent.getParcelableExtra(SONG_KEY)
+            song = intent.getParcelableExtra(SONG_KEY)
             song?.largeImageID?.let { btnAlbum.setImageResource(it) }
             tvTitle.text = song?.title
             tvArtist.text = song?.artist
 
-            // Initialize # of plays
-            numPlayed = Random.nextInt(0, 1000000)
+            // # of plays
             tvNumPlays.text = res.getQuantityString(R.plurals.num_plays, numPlayed, numPlayed)
 
             // Prev Button
@@ -74,8 +87,9 @@ class PlayerActivity : AppCompatActivity() {
                 true
             }
 
+            // Settings Button
             btnSettings.setOnClickListener {
-                song?.let{ launchSettingsActivity(this@PlayerActivity, it) }
+                song?.let{ launchSettingsActivity(this@PlayerActivity, it, numPlayed) }
             }
         }
     }
@@ -84,4 +98,44 @@ class PlayerActivity : AppCompatActivity() {
         finish()
         return super.onSupportNavigateUp()
     }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        Log.i("InstanceState", "saving")
+        outState.putInt(STATE_NUM_PLAYED, numPlayed )
+
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.settings_menu_items, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.itemSettings -> song?.let{ launchSettingsActivity(this@PlayerActivity, it, numPlayed) }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    companion object {
+        const val STATE_NUM_PLAYED = "numPlayed"
+    }
 }
+
+@Parcelize
+data class Character (
+    val profilePic: Int,
+    val name: String,
+    val age: Int,
+    val email: String,
+    val date: String,
+    val height: String
+): Parcelable
+
+@Parcelize
+data class AppInfo (
+    val devName: String,
+    val version: String,
+    val github: String
+): Parcelable
