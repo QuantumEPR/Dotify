@@ -7,46 +7,24 @@
 
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="edu.uw.zhewenz.dotify.SettingsFragment"
+        android:name="edu.uw.zhewenz.dotify.fragment.SettingsFragment"
         android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" >
-        <argument
-            android:name="song"
-            app:argType="com.ericchee.songdataprovider.Song" />
-        <argument
-            android:name="stats"
-            app:argType="integer" />
-    </fragment>
+        tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="edu.uw.zhewenz.dotify.ProfileFragment"
+        android:name="edu.uw.zhewenz.dotify.fragment.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
-        <argument
-            android:name="profile"
-            app:argType="edu.uw.zhewenz.dotify.Character" />
-    </fragment>
+        tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="edu.uw.zhewenz.dotify.AboutFragment"
+        android:name="edu.uw.zhewenz.dotify.fragment.AboutFragment"
         android:label="fragment_about"
-        tools:layout="@layout/fragment_about" >
-        <argument
-            android:name="appInfo"
-            app:argType="edu.uw.zhewenz.dotify.AppInfo" />
-    </fragment>
+        tools:layout="@layout/fragment_about" />
     <fragment
         android:id="@+id/statisticsFragment"
-        android:name="edu.uw.zhewenz.dotify.StatisticsFragment"
+        android:name="edu.uw.zhewenz.dotify.fragment.StatisticsFragment"
         android:label="fragment_statistics"
-        tools:layout="@layout/fragment_statistics" >
-        <argument
-            android:name="stats"
-            app:argType="integer" />
-        <argument
-            android:name="song"
-            app:argType="com.ericchee.songdataprovider.Song" />
-    </fragment>
+        tools:layout="@layout/fragment_statistics" />
     <action
         android:id="@+id/action_global_statisticsFragment"
         app:destination="@id/statisticsFragment" />

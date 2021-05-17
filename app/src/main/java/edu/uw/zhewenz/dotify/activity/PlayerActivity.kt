@@ -1,46 +1,42 @@
-package edu.uw.zhewenz.dotify
+package edu.uw.zhewenz.dotify.activity
 
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Parcelable
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import coil.load
 import com.ericchee.songdataprovider.Song
+import edu.uw.zhewenz.dotify.DotifyApplication
+import edu.uw.zhewenz.dotify.R
 import edu.uw.zhewenz.dotify.databinding.ActivityPlayerBinding
-import kotlinx.parcelize.Parcelize
+import edu.uw.zhewenz.dotify.activity.launchSettingsActivity
+import edu.uw.zhewenz.dotify.manager.SongManager
 import kotlin.random.Random
 
 // For Extra Credit
 // import edu.uw.zhewenz.dotify.databinding.ActivityMainLinearBinding
 
-private const val SONG_KEY = "song"
-
-fun navigateToPlayerActivity(context: Context, song: Song?) = with(context) {
-    var intent = Intent(this, PlayerActivity::class.java).apply {
-        val bundle = Bundle().apply {
-            putParcelable(SONG_KEY, song)
-        }
-        putExtras(bundle)
-        // Alternative
-        // putExtra(SONG_KEY, song)
-    }
-
+fun navigateToPlayerActivity(context: Context) = with(context) {
+    val intent = Intent(this, PlayerActivity::class.java)
     startActivity(intent)
 }
 
 
 class PlayerActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPlayerBinding
+    private lateinit var dotifyApp: DotifyApplication
+    private lateinit var songManager: SongManager
+
     private var numPlayed: Int = 0
-    private var song: Song? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        dotifyApp = this.applicationContext as DotifyApplication
+        songManager = dotifyApp.songManager
         binding = ActivityPlayerBinding.inflate(layoutInflater).apply {
             setContentView(root)
         }
@@ -48,17 +44,22 @@ class PlayerActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         with(binding) {
+
+            val res = resources
+            val song = songManager.selectedSong
             if (savedInstanceState != null) {
                 with(savedInstanceState) {
                     numPlayed = getInt(STATE_NUM_PLAYED)
                 }
             } else {
-                Log.i("InstanceState", "unavailable")
-                numPlayed = Random.nextInt(0, 1000000)
+                songManager.mapOfSongs[song].let {
+                    if (it != null) {
+                        numPlayed = it
+                    }
+                }
             }
-            val res = resources
-            song = intent.getParcelableExtra(SONG_KEY)
-            song?.largeImageID?.let { btnAlbum.setImageResource(it) }
+
+            song?.largeImageURL?.let { btnAlbum.load(it) }
             tvTitle.text = song?.title
             tvArtist.text = song?.artist
 
@@ -73,6 +74,7 @@ class PlayerActivity : AppCompatActivity() {
             // Play Button
             btnPlay.setOnClickListener {
                 numPlayed += 1
+                songManager.updateStats(song, numPlayed)
                 tvNumPlays.text = res.getQuantityString(R.plurals.num_plays, numPlayed, numPlayed)
             }
 
@@ -89,7 +91,7 @@ class PlayerActivity : AppCompatActivity() {
 
             // Settings Button
             btnSettings.setOnClickListener {
-                song?.let{ launchSettingsActivity(this@PlayerActivity, it, numPlayed) }
+                song?.let{ launchSettingsActivity(this@PlayerActivity) }
             }
         }
     }
@@ -113,7 +115,7 @@ class PlayerActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
-            R.id.itemSettings -> song?.let{ launchSettingsActivity(this@PlayerActivity, it, numPlayed) }
+            R.id.itemSettings -> launchSettingsActivity(this@PlayerActivity)
         }
         return super.onOptionsItemSelected(item)
     }
@@ -123,19 +125,4 @@ class PlayerActivity : AppCompatActivity() {
     }
 }
 
-@Parcelize
-data class Character (
-    val profilePic: Int,
-    val name: String,
-    val age: Int,
-    val email: String,
-    val date: String,
-    val height: String
-): Parcelable
 
-@Parcelize
-data class AppInfo (
-    val devName: String,
-    val version: String,
-    val github: String
-): Parcelable

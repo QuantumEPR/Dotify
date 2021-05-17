@@ -1,17 +1,27 @@
-package edu.uw.zhewenz.dotify
-
-import android.util.Log
+package edu.uw.zhewenz.dotify.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.ericchee.songdataprovider.Song
+import coil.load
+import edu.uw.zhewenz.dotify.DotifyApplication
+import edu.uw.zhewenz.dotify.model.Song
+import edu.uw.zhewenz.dotify.SongDiffCallback
 import edu.uw.zhewenz.dotify.databinding.ItemSongBinding
+import edu.uw.zhewenz.dotify.manager.SongManager
+import kotlin.random.Random
 
 
 class SongListAdapter(private var listOfSongs: List<Song>): RecyclerView.Adapter<SongListAdapter.SongListViewHolder>() {
     var onSongClickListener: (song: Song) -> Unit ={ _-> }
     var onSongLongClickListener: (position: Int, song: Song) -> Unit ={ _, _ -> }
+    lateinit var dotifyApp: DotifyApplication
+    lateinit var songManager: SongManager
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        dotifyApp = recyclerView.context.applicationContext as DotifyApplication
+        songManager = dotifyApp.songManager
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongListViewHolder {
         val binding = ItemSongBinding.inflate(LayoutInflater.from(parent.context))
         return SongListViewHolder(binding)
@@ -25,7 +35,7 @@ class SongListAdapter(private var listOfSongs: List<Song>): RecyclerView.Adapter
         with(holder.binding) {
             tvSongName.text = song.title
             tvArtistName.text = song.artist
-            ivAlbumCover.setImageResource(song.smallImageID)
+            ivAlbumCover.load(song.smallImageURL)
             root.setOnClickListener {
                 onSongClickListener(song)
             }
@@ -33,14 +43,11 @@ class SongListAdapter(private var listOfSongs: List<Song>): RecyclerView.Adapter
     }
 
     fun updateSongs(newListOfSongs: List<Song>) {
-        Log.i("new", newListOfSongs.toString())
-        Log.i("old", listOfSongs.toString())
         val callback = SongDiffCallback(newListOfSongs, listOfSongs)
         val result = DiffUtil.calculateDiff(callback)
         result.dispatchUpdatesTo(this)
-
+        songManager.updateSongs(newListOfSongs)
         this.listOfSongs = newListOfSongs
-//        notifyDataSetChanged()
     }
     class SongListViewHolder(val binding: ItemSongBinding): RecyclerView.ViewHolder(binding.root)
 }
