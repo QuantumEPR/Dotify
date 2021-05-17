@@ -32,8 +32,14 @@ class StatisticsFragment : Fragment() {
             if (song != null) {
                 ivAlbumCover.load(song.largeImageURL)
                 songDescription.text = resources.getString(R.string.song_description, song.title, song.artist)
+                tvDuration.text = song.durationMillis.toString()
+                tvArtist.text = song.artist
+                tvSmallUrl.text = song.smallImageURL
+                tvLargeUrl.text = song.largeImageURL
             }
             tvNumPlays.text = resources.getQuantityString(R.plurals.num_plays, stats, stats)
+
+
         }
         return binding.root
     }

@@ -35,5 +35,34 @@
         app:layout_constraintStart_toStartOf="@+id/ivAlbumCover"
         app:layout_constraintTop_toBottomOf="@id/songDescription"
         tools:text="Play count: 0" />
+    <TextView
+        android:id="@+id/tvArtist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/ivAlbumCover"
+        app:layout_constraintTop_toBottomOf="@id/tvNumPlays"
+        tools:text="Artist" />
+    <TextView
+        android:id="@+id/tvDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/ivAlbumCover"
+        app:layout_constraintTop_toBottomOf="@id/tvArtist"
+        tools:text="Duration" />
+    <TextView
+        android:id="@+id/tvSmallUrl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/ivAlbumCover"
+        app:layout_constraintTop_toBottomOf="@id/tvDuration"
+        tools:text="SmallUrl" />
+    <TextView
+        android:id="@+id/tvLargeUrl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/ivAlbumCover"
+        app:layout_constraintTop_toBottomOf="@id/tvSmallUrl"
+        tools:text="LargeUrl" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
