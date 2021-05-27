@@ -1,6 +1,7 @@
 package edu.uw.zhewenz.dotify.manager
 
 import android.content.Context
+import android.util.Log
 import androidx.work.*
 import java.util.concurrent.TimeUnit
 
@@ -31,6 +32,7 @@ class RefreshSongManager (context: Context) {
     }
 
     fun stopRefreshSongsPeriodically() {
+        Log.i("RefreshSongManager", "Canceling all work by Tag $SONG_SYNC_WORK_TAG")
         workManager.cancelAllWorkByTag(SONG_SYNC_WORK_TAG)
     }
 
@@ -65,6 +67,7 @@ class RefreshSongManager (context: Context) {
     }
 
     fun stopRefreshExtrasPeriodically() {
+        Log.i("RefreshSongManager", "Canceling all work by Tag $EXTRAS_SYNC_WORK_TAG")
         workManager.cancelAllWorkByTag(EXTRAS_SYNC_WORK_TAG)
     }
 
