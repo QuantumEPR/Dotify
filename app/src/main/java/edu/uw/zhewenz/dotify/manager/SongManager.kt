@@ -3,7 +3,7 @@ package edu.uw.zhewenz.dotify.manager
 import edu.uw.zhewenz.dotify.model.Song
 import kotlin.random.Random
 
-class SongManager {
+class SongManager() {
     var selectedSong: Song? = null
         private set
 
@@ -23,6 +23,11 @@ class SongManager {
         listOfSongs = newListOfSongs
         mapOfSongs = listOfSongs.associateWith { Random.nextInt(0, 1000000) }.toMutableMap()
     }
+    fun getSongs() : List<Song> {
+        return listOfSongs
+    }
+
     var listOfSongs: List<Song> = listOf<Song>()
+
     var mapOfSongs: MutableMap<Song, Int> = listOfSongs.associateWith { Random.nextInt(0, 1000000) }.toMutableMap()
 }

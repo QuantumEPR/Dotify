@@ -10,7 +10,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import coil.load
-import com.ericchee.songdataprovider.Song
+import edu.uw.zhewenz.dotify.model.Song
 import edu.uw.zhewenz.dotify.DotifyApplication
 import edu.uw.zhewenz.dotify.R
 import edu.uw.zhewenz.dotify.databinding.ActivityPlayerBinding
@@ -20,6 +20,8 @@ import kotlin.random.Random
 
 // For Extra Credit
 // import edu.uw.zhewenz.dotify.databinding.ActivityMainLinearBinding
+
+const val SONG_INFO_KEY = "SONG_INFO_KEY"
 
 fun navigateToPlayerActivity(context: Context) = with(context) {
     val intent = Intent(this, PlayerActivity::class.java)
@@ -46,7 +48,11 @@ class PlayerActivity : AppCompatActivity() {
         with(binding) {
 
             val res = resources
-            val song = songManager.selectedSong
+
+            var song = songManager.selectedSong
+            if (intent.hasExtra(SONG_INFO_KEY)) {
+                song = intent.getParcelableExtra(SONG_INFO_KEY)
+            }
             if (savedInstanceState != null) {
                 with(savedInstanceState) {
                     numPlayed = getInt(STATE_NUM_PLAYED)
@@ -58,6 +64,7 @@ class PlayerActivity : AppCompatActivity() {
                     }
                 }
             }
+
 
             song?.largeImageURL?.let { btnAlbum.load(it) }
             tvTitle.text = song?.title
